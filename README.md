@@ -1,5 +1,4 @@
 # Install
-
 Make sure [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
  and [Node.js](https://nodejs.org/en/download) are installed first.
 
@@ -16,3 +15,20 @@ Now run `npm start` to start the program. This will generate a config.json file 
 To configure the `webhookUrl` option, you can go into the settings of the Discord channel where you want the notifications to be, open "Integrations", press "View Webhook", press "New Webhook", press on the newly created webhook, change the name and/or avatar if you'd like, then press "Copy Webhook URL" and set the `webhookUrl` config option to that.
 
 Run `npm start` again and if you don't see any new messages appear then it should be working.
+
+# Placeholders
+Here are the placeholders which can be used in the `message` config option:
+- `{VideoTitle}`
+- `{VideoUrl}`
+- `{VideoId}`
+- `{VideoReleased}`
+- `{VideoDescription}`
+- `{VideoWidth}`
+- `{VideoWeight}`
+- `{ThumbWidth}`
+- `{ThumbHeight}`
+- `{ThumbUrl}`
+- `{ChannelTitle}`
+- `{ChannelUrl}`
+- `{ChannelId}`
+- `{ChannelReleased}`
