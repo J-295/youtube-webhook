@@ -67,7 +67,7 @@ let cfg: Config;
 	}
 
 	function getMessage(vid: Video): string {
-		return cfg.message.replace(/\{(.+?)\}/g, (full, name: string) => ({
+		return cfg.message.replace(/\{([^\}]+)\}/g, (full, name: string) => ({
 			"VideoTitle": vid.title,
 			"VideoUrl": vid.url,
 			"VideoId": vid.id,
