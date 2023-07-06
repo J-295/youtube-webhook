@@ -74,7 +74,7 @@ let cfg: Config;
 			"VideoReleased": vid.released.toString(),
 			"VideoDescription": vid.description,
 			"VideoWidth": vid.width.toString(),
-			"VideoWeight": vid.height.toString(),
+			"VideoHeight": vid.height.toString(),
 			"ThumbWidth": vid.thumb.width.toString(),
 			"ThumbHeight": vid.thumb.height.toString(),
 			"ThumbUrl": vid.thumb.url,

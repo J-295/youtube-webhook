@@ -24,7 +24,7 @@ Here are the placeholders which can be used in the `message` config option:
 - `{VideoReleased}`
 - `{VideoDescription}`
 - `{VideoWidth}`
-- `{VideoWeight}`
+- `{VideoHeight}`
 - `{ThumbWidth}`
 - `{ThumbHeight}`
 - `{ThumbUrl}`
