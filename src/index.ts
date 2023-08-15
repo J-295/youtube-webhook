@@ -1,14 +1,14 @@
-import fs from "node:fs";
-import assert from "node:assert";
-import { Config } from "./types/Config";
-import { Notifier, SubscriptionMethods, DataStorageMethods, Video } from "youtube-notifs";
+import fs from "node:fs";
+import assert from "node:assert";
+import { Config } from "./types/Config";
+import { Notifier, SubscriptionMethods, DataStorageMethods, Video } from "youtube-notifs";
 
 /*
  * Config
  */
-let cfg: Config;
+let cfg: Config;
 {
-	const webhookUrlPattern = /^https:\/\/discord.com\/api\/webhooks\/\d+\/[a-zA-Z0-9_\-]+$/;
+	const webhookUrlPattern = /^https:\/\/discord.com\/api\/webhooks\/\d+\/[a-zA-Z0-9_\-]+$/;
 
 	if (!fs.existsSync("config.json")) {
 		const defaultConfig: Config = {
@@ -16,30 +16,30 @@ let cfg: Config;
 			message: "{ChannelName} just uploaded a new video!\n{VideoUrl}",
 			checkInterval: 15,
 			subscriptions: ["UCS0N5baNlQWJCUrhCEo8WlA"]
-		};
-		fs.writeFileSync("config.json", `${JSON.stringify(defaultConfig, null, 2)}\n`, "utf8");
-		console.log("Configuration file created! (config.json)");
-		process.exit(0);
+		};
+		fs.writeFileSync("config.json", `${JSON.stringify(defaultConfig, null, 2)}\n`, "utf8");
+		console.log("Configuration file created! (config.json)");
+		process.exit(0);
 	}
 
-	const cfgJson = fs.readFileSync("config.json", "utf8");
+	const cfgJson = fs.readFileSync("config.json", "utf8");
 
 	try {
-		cfg = JSON.parse(cfgJson);
+		cfg = JSON.parse(cfgJson);
 	} catch (e) {
-		console.log("Failed to parse configuration file. Check for mistakes.");
-		process.exit(1);
+		console.log("Failed to parse configuration file. Check for mistakes.");
+		process.exit(1);
 	}
 
-	assert(typeof cfg.webhookUrl === "string");
-	assert(typeof cfg.message === "string");
-	assert(typeof cfg.checkInterval === "number");
-	assert(Array.isArray(cfg.subscriptions));
-	assert(cfg.subscriptions.every(e => typeof e === "string"));
+	assert(typeof cfg.webhookUrl === "string");
+	assert(typeof cfg.message === "string");
+	assert(typeof cfg.checkInterval === "number");
+	assert(Array.isArray(cfg.subscriptions));
+	assert(cfg.subscriptions.every(e => typeof e === "string"));
 
 	if (!webhookUrlPattern.test(cfg.webhookUrl)) {
-		console.log("The webhookUrl config option doesn't follow the right format. Make sure it is set and correct.");
-		process.exit(1);
+		console.log("The webhookUrl config option doesn't follow the right format. Make sure it is set and correct.");
+		process.exit(1);
 	}
 }
 
@@ -51,7 +51,7 @@ let cfg: Config;
 		parse: /@(?:everyone|here)/.test(cfg.message) ? ["everyone"] : [],
 		roles: Array.from(cfg.message.matchAll(/<@&(\d+)>/g)).map(e => e[1]),
 		users: Array.from(cfg.message.matchAll(/<@!?(\d+)>/g)).map(e => e[1])
-	};
+	};
 
 	function webhookSend(msg: string) {
 		fetch(cfg.webhookUrl, {
@@ -63,7 +63,7 @@ let cfg: Config;
 				content: msg,
 				allowed_mentions: allowedMentions
 			})
-		});
+		});
 	}
 
 	function getMessage(vid: Video): string {
@@ -82,7 +82,7 @@ let cfg: Config;
 			"ChannelUrl": vid.channel.url,
 			"ChannelId": vid.channel.id,
 			"ChannelReleased": vid.channel.released.toString()
-		})[name] ?? full);
+		})[name] ?? full);
 	}
 
 	const notifier = new Notifier({
@@ -94,16 +94,16 @@ let cfg: Config;
 			method: DataStorageMethods.File,
 			file: "data.json"
 		}
-	});
+	});
 
-	notifier.onError = console.error;
+	notifier.onError = console.error;
 
 	notifier.onNewVideo = (video) => {
-		const msg = getMessage(video);
-		webhookSend(msg);
+		const msg = getMessage(video);
+		webhookSend(msg);
 	}
 
-	notifier.subscribe(...cfg.subscriptions);
+	notifier.subscribe(...cfg.subscriptions);
 
-	notifier.start();
+	notifier.start();
 }
