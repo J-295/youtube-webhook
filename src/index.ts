@@ -53,8 +53,8 @@ let cfg: Config;
 		users: Array.from(cfg.message.matchAll(/<@!?(\d+)>/g)).map(e => e[1])
 	};
 
-	function webhookSend(msg: string) {
-		fetch(cfg.webhookUrl, {
+	async function webhookSend(msg: string): Promise<void> {
+		await fetch(cfg.webhookUrl, {
 			method: "POST",
 			headers: {
 				"Content-type": "application/json"
@@ -98,9 +98,11 @@ let cfg: Config;
 
 	notifier.onError = console.error;
 
-	notifier.onNewVideo = (video) => {
-		const msg = getMessage(video);
-		webhookSend(msg);
+	notifier.onNewVideos = async (videos) => {
+		for (const vid of videos) {
+			const msg = getMessage(vid);
+			await webhookSend(msg);
+		}
 	}
 
 	notifier.subscribe(...cfg.subscriptions);
