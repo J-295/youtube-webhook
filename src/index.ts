@@ -68,21 +68,21 @@ let cfg: Config;
 
 	function getMessage(vid: Video): string {
 		return cfg.message.replace(/\{([^\}]+)\}/g, (full, name: string) => ({
-			"VideoTitle": vid.title,
-			"VideoUrl": vid.url,
-			"VideoId": vid.id,
-			"VideoReleased": vid.released.toString(),
-			"VideoDescription": vid.description,
-			"VideoWidth": vid.width.toString(),
-			"VideoHeight": vid.height.toString(),
-			"ThumbWidth": vid.thumb.width.toString(),
-			"ThumbHeight": vid.thumb.height.toString(),
-			"ThumbUrl": vid.thumb.url,
-			"ChannelTitle": vid.channel.title,
-			"ChannelUrl": vid.channel.url,
-			"ChannelId": vid.channel.id,
-			"ChannelReleased": vid.channel.released.toString()
-		})[name] ?? full);
+			"videotitle": vid.title,
+			"videourl": vid.url,
+			"videoid": vid.id,
+			"videoreleased": vid.released.toString(),
+			"videodescription": vid.description,
+			"videowidth": vid.width.toString(),
+			"videoheight": vid.height.toString(),
+			"thumbwidth": vid.thumb.width.toString(),
+			"thumbheight": vid.thumb.height.toString(),
+			"thumburl": vid.thumb.url,
+			"channeltitle": vid.channel.title,
+			"channelurl": vid.channel.url,
+			"channelid": vid.channel.id,
+			"channelreleased": vid.channel.released.toString()
+		})[name.toLowerCase()] ?? full);
 	}
 
 	const notifier = new Notifier({

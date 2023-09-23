@@ -17,7 +17,7 @@ To configure the `webhookUrl` option, you can go into the settings of the Discor
 Run `npm start` again and if you don't see any new messages appear then it should be working.
 
 # Placeholders
-Here are the placeholders which can be used in the `message` config option:
+Here are the (case-insensitive) placeholders which can be used in the `message` config option:
 - `{VideoTitle}`
 - `{VideoUrl}`
 - `{VideoId}`
