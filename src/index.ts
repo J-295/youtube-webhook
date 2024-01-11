@@ -14,7 +14,7 @@ let cfg: Config;
 	if (!fs.existsSync("config.json")) {
 		const defaultConfig: Config = {
 			webhookUrl: "",
-			message: "{ChannelName} just uploaded a new video!\n{VideoUrl}",
+			message: "{ChannelName} uploaded a new video!\n{VideoUrl}",
 			checkInterval: 15,
 			subscriptions: ["UCS0N5baNlQWJCUrhCEo8WlA"]
 		};
