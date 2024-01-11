@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import assert from "node:assert";
 import { Config } from "./types/Config";
-import { Notifier, SubscriptionMethods, DataStorageMethods, Video } from "youtube-notifs";
+import { PollingNotifier, JsonStorage, Video } from "youtube-notifs";
 
 /*
  * Config
@@ -71,32 +71,24 @@ let cfg: Config;
 			"videotitle": vid.title,
 			"videourl": vid.url,
 			"videoid": vid.id,
-			"videoreleased": vid.released.toString(),
+			"videoreleased": vid.created.toString(),
 			"videodescription": vid.description,
 			"videowidth": vid.width.toString(),
 			"videoheight": vid.height.toString(),
 			"thumbwidth": vid.thumb.width.toString(),
 			"thumbheight": vid.thumb.height.toString(),
 			"thumburl": vid.thumb.url,
-			"channeltitle": vid.channel.title,
+			"channeltitle": vid.channel.name,
 			"channelurl": vid.channel.url,
 			"channelid": vid.channel.id,
-			"channelreleased": vid.channel.released.toString()
+			"channelreleased": vid.channel.created.toString()
 		})[name.toLowerCase()] ?? full);
 	}
 
-	const notifier = new Notifier({
-		subscription: {
-			method: SubscriptionMethods.Polling,
-			interval: cfg.checkInterval
-		},
-		dataStorage: {
-			method: DataStorageMethods.File,
-			file: "data.json"
-		}
+	const notifier = new PollingNotifier({
+		interval: cfg.checkInterval,
+		storage: new JsonStorage("data.json")
 	});
-
-	notifier.onError = console.error;
 
 	notifier.onNewVideos = async (videos) => {
 		for (const vid of videos) {
@@ -105,7 +97,7 @@ let cfg: Config;
 		}
 	}
 
-	notifier.subscribe(...cfg.subscriptions);
+	notifier.subscribe(cfg.subscriptions);
 
 	notifier.start();
 }

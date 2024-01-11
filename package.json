@@ -9,6 +9,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "youtube-notifs": "^4.2.7"
+    "youtube-notifs": "^6.0.0"
   }
 }
