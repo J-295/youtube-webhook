@@ -5,8 +5,8 @@
     "start": "node ."
   },
   "devDependencies": {
-    "@types/node": "^20.4.0",
-    "typescript": "^5.1.6"
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "youtube-notifs": "^4.2.7"
