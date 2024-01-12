@@ -13,14 +13,14 @@ Here are the (case-insensitive) placeholders which can be used in the `message` 
 - `{VideoTitle}`
 - `{VideoUrl}`
 - `{VideoId}`
-- `{VideoReleased}`
+- `{VideoCreated}`
 - `{VideoDescription}`
 - `{VideoWidth}`
 - `{VideoHeight}`
 - `{ThumbWidth}`
 - `{ThumbHeight}`
 - `{ThumbUrl}`
-- `{ChannelTitle}`
+- `{ChannelName}`
 - `{ChannelUrl}`
 - `{ChannelId}`
-- `{ChannelReleased}`
+- `{ChannelCreated}`

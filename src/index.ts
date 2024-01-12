@@ -72,17 +72,17 @@ let cfg: Config;
 			"videotitle": vid.title,
 			"videourl": vid.url,
 			"videoid": vid.id,
-			"videoreleased": vid.created.toString(),
+			"videocreated": vid.created.toString(),
 			"videodescription": vid.description,
 			"videowidth": vid.width.toString(),
 			"videoheight": vid.height.toString(),
 			"thumbwidth": vid.thumb.width.toString(),
 			"thumbheight": vid.thumb.height.toString(),
 			"thumburl": vid.thumb.url,
-			"channeltitle": vid.channel.name,
+			"channelname": vid.channel.name,
 			"channelurl": vid.channel.url,
 			"channelid": vid.channel.id,
-			"channelreleased": vid.channel.created.toString()
+			"channelcreated": vid.channel.created.toString()
 		})[name.toLowerCase()] ?? full);
 	}
 
