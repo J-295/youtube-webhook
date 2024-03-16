@@ -1,8 +1,7 @@
 import fs from "node:fs";
 import assert from "node:assert";
 import { Config } from "./types/Config";
-import { PollingNotifier, Video } from "youtube-notifs";
-import { JsonStorageUpgrade } from "./JsonStorageUpgrade";
+import { PollingNotifier, JsonStorage, Video } from "youtube-notifs";
 
 /*
  * Config
@@ -88,7 +87,7 @@ let cfg: Config;
 
 	const notifier = new PollingNotifier({
 		interval: cfg.checkInterval,
-		storage: new JsonStorageUpgrade("data.json")
+		storage: new JsonStorage("data.json")
 	});
 
 	notifier.onNewVideos = async (videos) => {
