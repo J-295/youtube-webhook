@@ -1,7 +1,7 @@
 # Install
 - You must have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download) installed first.
 - Open the terminal. In Windows, the terminal can be found by pressing the Windows key and typing `cmd`
-- Download the files by running `git clone https://github.com/James-Bennett-295/youtube-webhook`
+- Download the files by running `git clone https://github.com/J-295/youtube-webhook`
 - Once that command has completed, navigate to the newly created `youtube-webhook` folder by running `cd youtube-webhook`
 - Get the program ready by running `npm install` then `npm run build`
 - Now run `npm start` to start the program. This will generate a config.json file which you can now configure.
